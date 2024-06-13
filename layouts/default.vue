@@ -17,10 +17,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useAuthenticator, Authenticator } from '@aws-amplify/ui-vue'
+import { useAuthenticator } from '@aws-amplify/ui-vue'
 import Sidebar from './default/Sidebar.vue'
 import type { UseAuthenticator } from '~/global'
-
 
 const drawerID = 'navbar-drawer'
 const drawer = ref(false)
