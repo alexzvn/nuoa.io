@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import Sidebar from './default/Sidebar.vue'
 
-const drawerID = useId()
+const drawerID = 'navbar-drawer'
 const drawer = ref(false)
 
 provide('sidebar:toggle', () => drawer.value = !drawer.value)
