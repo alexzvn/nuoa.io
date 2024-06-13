@@ -10,7 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@aws-amplify/ui-vue": "^4.2.8",
     "@vueuse/core": "^10.11.0",
+    "aws-amplify": "^6.3.6",
     "daisyui": "^4.12.2",
     "nuxt": "^3.11.2",
     "vue": "^3.4.27",
@@ -19,7 +21,6 @@
   "devDependencies": {
     "@formkit/nuxt": "^1.6.5",
     "@nuxtjs/tailwindcss": "^6.12.0",
-    "@sidebase/nuxt-auth": "^0.7.2",
     "@vueuse/nuxt": "^10.10.0",
     "nuxt-icon": "^0.6.10"
   }

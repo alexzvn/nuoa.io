@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@formkit/nuxt",
     "@vueuse/nuxt",
-    "@nuxtjs/tailwindcss",
+    "@nuxtjs/tailwindcss"
   ],
 
   experimental: {

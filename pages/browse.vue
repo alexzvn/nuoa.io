@@ -3,7 +3,7 @@
   <h3 class="text-2xl font-semibold mx-1">Browse PCFs Page</h3>
 
   <transition name="fade" appear>
-    <div v-show="" role="alert" class="alert bg-green-200 shadow my-3">
+    <div role="alert" class="alert bg-green-200 shadow my-3">
       <Icon name="fa:paper-plane" class="text-success size-7" />
       
       <span>Your request has been sent. A notification will be sent to the DO shortly. Please be patient!!!</span>
@@ -26,7 +26,6 @@
     </template>
 
     <table class="table">
-      <!-- head -->
       <thead>
         <tr>
           <th>ID</th>
