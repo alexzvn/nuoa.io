@@ -3,7 +3,7 @@
     <input :id="drawerID" type="checkbox" v-model="drawer" class="drawer-toggle" />
     <div class="drawer-content bg-base-200">
       <div class="p-5">
-        <slot />
+        <NuxtPage />
       </div>
     </div> 
     <div class="drawer-side">
@@ -28,7 +28,7 @@ provide('sidebar:toggle', () => drawer.value = !drawer.value)
 
 const auth = useAuthenticator() as UseAuthenticator
 
-watch(() => auth.authStatus, (value) => {
+watch(() => auth.authStatus, async (value) => {
   if (value === 'unauthenticated') {
     navigateTo('/auth/login')
   }
