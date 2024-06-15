@@ -13,7 +13,6 @@ export default defineNuxtPlugin(() => {
     }
   ]
 
-
   Amplify.configure({
     ...awsconfig,
 
