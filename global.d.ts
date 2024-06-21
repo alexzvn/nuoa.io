@@ -17,12 +17,12 @@ declare type Authenticator = {
   updateForm: (param?: unknown) => unknown
   toSignUp: (param?: unknown) => unknown
 
-  user?: Record
-  username?: {
+  user?: {
     signInDetails: { loginId: string, authFlowType: string }
     userId: string
     username: string
   }
+  username?: unknown
 }
 
 declare type UseAuthenticator = UnwrapNestedRefs<Authenticator>
