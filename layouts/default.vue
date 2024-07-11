@@ -5,7 +5,7 @@
       <Navbar />
 
       <div class="p-5">
-        <slot /> 
+        <NuxtPage /> 
       </div>
     </div> 
     <div class="drawer-side">
