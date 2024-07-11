@@ -10,8 +10,8 @@
     "config": {
       "SourceDir": ".",
       "DistributionDir": "dist",
-      "BuildCommand": "bun run build",
-      "StartCommand": "bun run start"
+      "BuildCommand": "npm run-script build",
+      "StartCommand": "npm run-script serve"
     }
   }
 }

@@ -1,6 +1,6 @@
-import * as API from '@aws-amplify/api'
+import * as API from 'aws-amplify/api'
 
-export const useAPI = (name: string = 'api') => {
+export const useAPI = (name: string = 'dev') => {
   type Option = Parameters<typeof API.post>[0]['options']
 
   return {

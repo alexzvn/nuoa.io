@@ -13,7 +13,12 @@
     },
     "categories": {
       "auth": {
-        "nuoasharingplatformd9531745": {}
+        "nuoasharingplatform6b660d20": {
+          "nativeClientId": "6bbk8tlo4slu85ttf237vo2js8",
+          "userPoolId": "ap-southeast-1_wYN60lMPm",
+          "userPoolName": "NuoaUserPool",
+          "webClientId": "6bbk8tlo4slu85ttf237vo2js8"
+        }
       }
     }
   }

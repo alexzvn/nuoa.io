@@ -85,11 +85,18 @@
 <script lang="ts" setup>
 import DataViewPaginate from '~/components/DataViewPaginate.vue'
 import Modal from '~/components/Modal.vue'
+import { useMande } from '~/composables/useMande'
+
 
 const requestDialog = ref<InstanceType<typeof Modal>>()
 const request = reactive({ content: '' })
+const api = await useMande()
 
 const requestAccess = () => {
   requestDialog.value?.show()
 }
+
+onMounted(async () => {
+  api.get('/pcf', { query: { dataOwnerId: '' } }).then(console.log)
+})
 </script>
