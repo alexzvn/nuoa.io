@@ -22,7 +22,7 @@
       </thead>
       <tbody>
 
-        <tr class="hover">
+        <tr class="hover cursor-pointer" @click="navigateTo('/me/published/detail')">
           <th>abc1</th>
           <td>product1</td>
           <td>Door Card</td>
@@ -41,4 +41,6 @@
 
 <script lang="ts" setup>
 import DataViewPaginate from '~/components/DataViewPaginate.vue'
+
+useBreadcrumb('All published PCFs')
 </script>

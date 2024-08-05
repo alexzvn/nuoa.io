@@ -59,4 +59,6 @@ const additional = reactive([
   { name: 'Data quality', value: '80%' }
 ])
 
+useBreadcrumb('Create new PCF')
+
 </script>

@@ -1,7 +1,5 @@
 
 <template>
-  <h3 class="text-2xl font-semibold mx-1">Browse PCFs Page</h3>
-
   <transition name="fade" appear>
     <div role="alert" class="alert bg-green-200 shadow my-3">
       <Icon name="fa:paper-plane" class="text-success size-7" />
@@ -93,6 +91,8 @@ const request = reactive({ content: '' })
 const api = await useMande()
 
 const pcfs = ref(new Array<PCF>())
+
+useBreadcrumb('Browse PCFs Page')
 
 const requestAccess = () => {
   requestDialog.value?.show()
