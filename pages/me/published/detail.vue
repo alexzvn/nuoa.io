@@ -44,7 +44,7 @@
 
           <div class="flex space-x-3">
             <button class="btn btn-sm btn-error">Mark deprecated</button>
-            <button class="btn btn-sm btn-success">Update PCF</button>
+            <NuxtLink to="/me/published/update" class="btn btn-sm btn-success">Update PCF</NuxtLink >
           </div>
         </div>
       </template>
@@ -65,6 +65,6 @@ table {
 
 th {
   text-align: left;
-  @apply px-3 py-2; 
+  @apply px-3 py-2;
 }
 </style>

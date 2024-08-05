@@ -6,12 +6,8 @@
       </div>
 
       <div class="card-body">
-        <div class="form-control">
-          <label class="label">Product ID</label>
-          <select class="select select-bordered">
-            <option value="product">Product</option>
-          </select>
-        </div>
+        <p><strong>Product ID:</strong> product4</p>
+        <p><strong>Product name:</strong> Car Seat</p>
 
         <div class="form-control">
           <label class="label">Product Name</label>
@@ -22,7 +18,7 @@
 
         <div class="form-control">
           <label class="label">Amount</label>
-          <input type="number" class="input input-bordered" />
+          <input type="number" class="input input-bordered" value=20 />
         </div>
 
         <div class="form-control">
@@ -59,6 +55,5 @@ const additional = reactive([
   { name: 'Data quality', value: '80%' }
 ])
 
-useBreadcrumb('Create new PCF')
-
+useBreadcrumb('Update PCF')
 </script>

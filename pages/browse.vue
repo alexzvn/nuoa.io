@@ -3,9 +3,9 @@
   <transition name="fade" appear>
     <div role="alert" class="alert bg-green-200 shadow my-3">
       <Icon name="fa:paper-plane" class="text-success size-7" />
-      
+
       <span>Your request has been sent. A notification will be sent to the DO shortly. Please be patient!!!</span>
-      
+
       <button class="btn btn-sm btn-ghost btn-circle">
         <Icon name="ic:close" class="size-6" />
       </button>
@@ -36,7 +36,7 @@
         </tr>
       </thead>
       <tbody>
-<!-- 
+<!--
         <tr class="hover">
           <th>abc1</th>
           <td>product1</td>
@@ -57,7 +57,7 @@
           <td>{{ item.version }}</td>
           <td>{{ item.datePublished.split('-').reverse().map(it => +it).join('/') }}</td>
           <td>
-            ---
+            <a class="link text-blue-600" @click="requestDialog!.show()">Request Access</a >
             <!-- <span class="text-yellow-500">Pending</span> -->
           </td>
         </tr>
