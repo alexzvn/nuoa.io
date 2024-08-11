@@ -39,11 +39,11 @@ const pcf = reactive({
   pcfId: '',
   message: '',
   dataOwnerId: '',
-  version: 0,
+  version: '',
 })
 
 
-const open = (pcfId: string, version: number, dataOwnerId: string) => {
+const open = (pcfId: string, version: string, dataOwnerId: string) => {
   pcf.pcfId = pcfId
   pcf.version = version
   pcf.dataOwnerId = dataOwnerId

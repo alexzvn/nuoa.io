@@ -54,7 +54,7 @@
           <td>{{ item.version }}</td>
           <td>{{ item.datePublished.split('-').reverse().map(it => +it).join('/') }}</td>
           <td>
-            <a class="link text-blue-600" @click="requester!.open(item.pcfId, +item.version, user?.userId!)">Request Access</a >
+            <a class="link text-blue-600" @click="requester!.open(item.pcfId, item.version, user?.userId!)">Request Access</a >
             <!-- <span class="text-yellow-500">Pending</span> -->
           </td>
         </tr>
