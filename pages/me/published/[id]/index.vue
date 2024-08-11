@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <DataViewPaginate>
+    <DataViewPaginate v-if="pcf">
       <template #title>
         <h3 class="card-title font-bold">PCF Details</h3>
         <hr>
@@ -10,31 +10,31 @@
       <table>
         <tr>
           <th>PCF ID:</th>
-          <td>abc4</td>
+          <td>{{ pcf.pcfId }}</td>
         </tr>
         <tr>
           <th>Product ID:</th>
-          <td>product4</td>
+          <td>{{ pcf.productId }}</td>
         </tr>
         <tr>
           <th>Product Name:</th>
-          <td>Car Seat</td>
+          <td>{{ pcf.productName }}</td>
         </tr>
         <tr>
           <th>Amount:</th>
-          <td>4</td>
+          <td>{{ pcf.amount }}</td>
         </tr>
         <tr>
           <th>Emission per Unit:</th>
-          <td>20 tCO2</td>
+          <td>{{ pcf.emissionPerUnit }} tCO2</td>
         </tr>
         <tr>
           <th>Version:</th>
-          <td>1</td>
+          <td>{{ pcf.version }}</td>
         </tr>
         <tr>
           <th>Status:</th>
-          <td>active</td>
+          <td>{{ pcf.pcfStatus }}</td>
         </tr>
       </table>
 
@@ -44,7 +44,7 @@
 
           <div class="flex space-x-3">
             <button class="btn btn-sm btn-error">Mark deprecated</button>
-            <NuxtLink to="/me/published/update" class="btn btn-sm btn-success">Update PCF</NuxtLink >
+            <NuxtLink :to="`/me/published/${id}/update`" class="btn btn-sm btn-success">Update PCF</NuxtLink >
           </div>
         </div>
       </template>
@@ -53,9 +53,33 @@
 </template>
 
 <script lang="ts" setup>
+import { useAuthenticator } from '@aws-amplify/ui-vue'
+import type { MandeInstance } from 'mande'
+import type { Authenticator } from '~/global'
+
+const { id } = useRoute().params
 const router = useRouter()
 
 useBreadcrumb('PCF Detail')
+
+const api = inject<MandeInstance>('api')!
+const auth = useAuthenticator() as Authenticator
+const pcf = ref<PCF>()
+
+console.log(id);
+
+onMounted(async () => {
+  const { pcfs } = await api.get<{ pcfs: PCF[] }>('/pcf', {
+    query: { dataOwnerId: auth.user?.userId, pcfId: id }
+  }).catch(() => ({ pcfs: [] }))
+
+  pcf.value = pcfs[0]
+
+  if (!pcf.value) {
+    router.push('/me/published')
+  }
+})
+
 </script>
 
 <style scoped>

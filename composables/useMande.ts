@@ -27,7 +27,7 @@ export type PCF = {
   pcfStatus?: 'active'|'pending'
   amount?: number
   emissionPerUnit?: string
-  additionalData?: string
+  additionalData?: Record<string, string>
   approvedRecipients?: string[]
 
 

@@ -22,7 +22,7 @@
       </thead>
       <tbody>
 
-        <tr v-for="pcf of pcfs" class="hover cursor-pointer" @click="navigateTo('/me/published/detail')">
+        <tr v-for="pcf of pcfs" class="hover cursor-pointer" @click="navigateTo(`/me/published/${pcf.pcfId}`)">
           <th>{{ pcf.pcfId }}</th>
           <td>{{ pcf.productId }}</td>
           <td>{{ pcf.productName }}</td>
