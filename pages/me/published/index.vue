@@ -22,15 +22,15 @@
       </thead>
       <tbody>
 
-        <tr class="hover cursor-pointer" @click="navigateTo('/me/published/detail')">
-          <th>abc1</th>
-          <td>product1</td>
-          <td>Door Card</td>
-          <td>5</td>
-          <td>300 tCO2</td>
-          <td>1</td>
+        <tr v-for="pcf of pcfs" class="hover cursor-pointer" @click="navigateTo('/me/published/detail')">
+          <th>{{ pcf.pcfId }}</th>
+          <td>{{ pcf.productId }}</td>
+          <td>{{ pcf.productName }}</td>
+          <td>{{ pcf.amount }}</td>
+          <td>{{ pcf.emissionPerUnit }}</td>
+          <td>{{ pcf.version }}</td>
           <td>
-            <a class="link link-success" @click="">Active</a>
+            <a class="link link-success" v-if="pcf.pcfStatus === 'active'">Active</a>
           </td>
         </tr>
 
