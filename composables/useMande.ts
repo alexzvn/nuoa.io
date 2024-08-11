@@ -20,6 +20,16 @@ export type PCF = {
   pcfId: string
   productName: string
   version: string
+  productId: string
+
+  dataOwnerId?: string
+
+  pcfStatus?: 'active'|'pending'
+  amount?: number
+  emissionPerUnit?: string
+  additionalData?: string
+  approvedRecipients?: string[]
+
 
   /**
    * @example 2024-07-02

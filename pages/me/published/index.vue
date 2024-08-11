@@ -40,7 +40,24 @@
 </template>
 
 <script lang="ts" setup>
+import { useAuthenticator } from '@aws-amplify/ui-vue'
+import type { MandeInstance } from 'mande'
 import DataViewPaginate from '~/components/DataViewPaginate.vue'
+import type { Authenticator } from '~/global'
 
 useBreadcrumb('All published PCFs')
+
+const api = inject<MandeInstance>('api')!
+const auth = useAuthenticator() as Authenticator
+
+const pcfs = ref<PCF[]>([])
+
+onMounted(async () => {
+  const response = await api.get<{ pcfs: PCF[] }>('/pcf', {
+    query: { dataOwnerId: auth.user?.userId }
+  })
+
+  pcfs.value = response.pcfs
+})
+
 </script>
