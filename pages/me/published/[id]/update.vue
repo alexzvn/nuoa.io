@@ -11,7 +11,7 @@
 
         <div class="form-control">
           <label class="label">Product Name</label>
-          <input v-model="pcf.productName" type="text" class="input input-bordered" />
+          <input v-model="pcf.productName" type="text" class="input input-bordered" disabled/>
         </div>
 
         <div class="form-control">
@@ -22,6 +22,11 @@
         <div class="form-control">
           <label class="label">Emission per Unit (tCO2)</label>
           <input v-model="pcf.emissionPerUnit" type="text" class="input input-bordered" />
+        </div>
+
+        <div class="form-control">
+          <label class="label">Version</label>
+          <input v-model="pcf.version" type="text" class="input input-bordered" />
         </div>
 
         <div class="form-control">
@@ -43,7 +48,7 @@
       </div>
 
       <div class="border-t card-actions p-5 justify-end space-x-5">
-        <button class="btn btn-error btn-sm">Cancel</button>
+        <button class="btn btn-error btn-sm" @click="router.back()">Cancel</button>
         <button class="btn btn-success btn-sm" @click="update">Submit</button>
       </div>
     </div>
@@ -52,7 +57,7 @@
 
 <script lang="ts" setup>
 import { useAuthenticator } from '@aws-amplify/ui-vue'
-import type { MandeInstance } from 'mande'
+import type { MandeError, MandeInstance } from 'mande'
 import type { Authenticator } from '~/global'
 
 const { id } = useRoute().params
@@ -75,13 +80,13 @@ const update = async () => {
   additional.length = 0
   additional.push(... extra)
 
-  await api.put('/pcf', {
+  await api.put('/pcf/' + id, {
     ... pcf.value,
     additionalData: Object.fromEntries(additional.map(it => [it.name, it.value])),
   }).then(() => {
     alert('PCF updated successfully')
-  }).catch(() => {
-    alert('Failed to update PCF')
+  }).catch((error: MandeError) => {
+    alert(error.body.message ?? 'Failed to update PCF')
   })
 }
 
