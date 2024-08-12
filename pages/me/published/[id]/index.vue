@@ -43,7 +43,7 @@
           <button class="btn btn-sm" @click="router.back()">Go Back</button>
 
           <div class="flex space-x-3">
-            <button class="btn btn-sm btn-error">Mark deprecated</button>
+            <button class="btn btn-sm btn-error" @click="markAsDeprecated">Mark deprecated</button>
             <NuxtLink :to="`/me/published/${id}/update`" class="btn btn-sm btn-success">Update PCF</NuxtLink >
           </div>
         </div>
@@ -79,6 +79,14 @@ onMounted(async () => {
     router.push('/me/published')
   }
 })
+
+const markAsDeprecated = async () => {
+  await api.put(`/pcf/${id}`, {
+    pcfId: id,
+    version: pcf.value!.version || '1',
+    pcfStatus: 'deprecated'
+  })
+}
 
 </script>
 

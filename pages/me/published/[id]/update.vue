@@ -25,11 +25,6 @@
         </div>
 
         <div class="form-control">
-          <label class="label">Version</label>
-          <input v-model="pcf.version" type="text" class="input input-bordered" />
-        </div>
-
-        <div class="form-control">
           <label class="label">Additional Information</label>
 
           <div v-for="info, i of additional" class="flex space-x-3 mb-3">
@@ -80,10 +75,16 @@ const update = async () => {
   additional.length = 0
   additional.push(... extra)
 
-  await api.put('/pcf/' + id, {
+  const payload = {
     ... pcf.value,
+    version: pcf.value!.version,
     additionalData: Object.fromEntries(additional.map(it => [it.name, it.value])),
-  }).then(() => {
+  }
+
+  delete payload.productId
+  delete payload.productName
+
+  await api.put('/pcf/' + id, payload).then(() => {
     alert('PCF updated successfully')
   }).catch((error: MandeError) => {
     alert(error.body.message ?? 'Failed to update PCF')

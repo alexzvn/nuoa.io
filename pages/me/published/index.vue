@@ -30,7 +30,9 @@
           <td>{{ pcf.emissionPerUnit }}</td>
           <td>{{ pcf.version }}</td>
           <td>
-            <a class="link link-success" v-if="pcf.pcfStatus === 'active'">Active</a>
+            <a class="text-success" v-if="pcf.pcfStatus === 'active'">Active</a>
+            <a class="text-error" v-else-if="pcf.pcfStatus === 'deprecated'">Deprecated</a>
+            <a class="text-warning" v-else>{{ pcf.pcfStatus }}</a>
           </td>
         </tr>
 
