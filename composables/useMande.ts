@@ -36,3 +36,17 @@ export type PCF = {
    */
   datePublished: string
 }
+
+export type RequestAccess = {
+  requestId: string
+  dataOwnerId: string
+
+  /** Format YYYY-MM-DD */
+  dateProcessed: string
+  /** Format YYYY-MM-DD */
+  dateRequested: string
+
+  message: string
+  requestStatus: 'approved'|'pending'|'denied'
+  version: number
+}
