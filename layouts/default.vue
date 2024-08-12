@@ -39,9 +39,6 @@ onMounted(() => {
     navigateTo('/auth/login')
   }
 
-  console.log(auth);
-  
-
   // @ts-ignore for debug
   window.api = api
 })

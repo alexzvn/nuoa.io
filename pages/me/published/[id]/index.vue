@@ -66,7 +66,6 @@ const api = inject<MandeInstance>('api')!
 const auth = useAuthenticator() as Authenticator
 const pcf = ref<PCF>()
 
-console.log(id);
 
 onMounted(async () => {
   const { pcfs } = await api.get<{ pcfs: PCF[] }>('/pcf', {

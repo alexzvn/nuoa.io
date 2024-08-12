@@ -67,7 +67,7 @@ const pcf = reactive({
   productName: '',
   amount: 0,
   emissionPerUnit: 0,
-  version: '1',
+  version: 1,
   pcfStatus: 'active'
 })
 

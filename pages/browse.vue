@@ -53,10 +53,11 @@
           <td>{{ item.dataOwnerId ?? '---' }}</td>
           <td>{{ item.version }}</td>
           <td>{{ item.datePublished.split('-').reverse().map(it => +it).join('/') }}</td>
-          <td>
+          <td v-if="user?.userId !== item.dataOwnerId">
             <a class="link text-blue-600" @click="requester!.open(item.pcfId, item.version, user?.userId!)">Request Access</a >
             <!-- <span class="text-yellow-500">Pending</span> -->
           </td>
+          <td v-else>---</td>
         </tr>
       </tbody>
     </table>
