@@ -24,7 +24,7 @@ export type PCF = {
 
   dataOwnerId?: string
 
-  pcfStatus?: 'active'|'pending'
+  pcfStatus?: 'active'|'pending'|'deprecated'
   amount?: number
   emissionPerUnit?: string
   additionalData?: Record<string, string>
