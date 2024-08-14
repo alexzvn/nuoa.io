@@ -18,17 +18,17 @@
         <div class="flex text-sm opacity-90">
           <div class="mt-1.5">
             Row Per Page:
-            <select v-model="selected" class="select select-xs">
-              <option v-for="item in perPage" :value="item" :selected="item === take">{{ item }}</option>
+            <select v-model="limit" class="select select-xs">
+              <option v-for="item in perPage" :value="item" :selected="item == limit">{{ item }}</option>
             </select>
           </div>
 
           <div class="flex space-x-2">
             <button class="btn btn-sm btn-circle btn-ghost">
-              <Icon name="fe:arrow-left" class="size-5" @click="emit('prev')" />
+              <Icon name="fe:arrow-left" class="size-5" @click="page = page <= 1 ? 1 : page - 1" />
             </button>
-            <!-- <span class="mt-1.5">1-3 of 3</span> -->
-            <div class="btn btn-sm btn-circle btn-ghost" @click="emit('next')">
+            <span class="mt-1.5">Page {{ page }}</span>
+            <div class="btn btn-sm btn-circle btn-ghost" @click="page++">
               <Icon name="fe:arrow-right" class="size-5" />
             </div>
           </div>
@@ -43,17 +43,16 @@ import type { PropType } from 'vue'
 
 const props = defineProps({
   title: { type: String },
-  perPage: { type: Array as PropType<number[]>, default: () => [10] },
-  take: { type: Number, default: 10 }
+  perPage: { type: Array as PropType<number[]>, default: () => [10, 20, 30, 50, 100, 200, 500] },
 })
 
-const selected = ref(props.take)
+const page = defineModel('page', {
+  type: Number,
+  default: 1,
+})
 
-const emit = defineEmits<{
-  next: [],
-  prev: [],
-  take: [number]
-}>()
-
-watch(selected, value => emit('take', value))
+const limit = defineModel('limit', {
+  type: Number,
+  default: 10,
+})
 </script>
