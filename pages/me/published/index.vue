@@ -1,8 +1,19 @@
 <template>
-  <DataViewPaginate class="min-h-[60vh]">
+  <DataViewPaginate class="min-h-[60vh]" v-model:limit="search.limit" v-model:page="search.page">
     <template #title>
       <div class="flex justify-between space-x-3 px-3">
-        <h3 class="card-title font-bold">My published PCFs</h3>
+        <div class="flex space-x-3">
+          <h3 class="card-title font-bold">My published PCFs</h3>
+          <div class="flex space-x-2">
+            <select v-model="search.type" class="input input-bordered input-sm">
+              <option v-for="label, key in searchTypes" :value="key">{{ label }}</option>
+            </select>
+            <label class="input input-bordered input-sm flex items-center gap-2">
+              <input v-model="search.term" type="text" class="grow" placeholder="Search"/>
+              <Icon name="ic:search" />
+            </label>
+          </div>
+        </div>
         <NuxtLink to="/me/published/create" class="btn btn-sm btn-success">New PCF</NuxtLink>
       </div>
       <hr>
@@ -49,17 +60,51 @@ import type { Authenticator } from '~/global'
 
 useBreadcrumb('All published PCFs')
 
+const searchTypes = {
+  productName: 'Name',
+  pcfId: 'ID',
+  productId: 'Product ID',
+}
+
+const search = reactive({
+  term: '',
+  type: 'productId' as keyof typeof searchTypes,
+  page: 1,
+  limit: 10
+})
+
+const query = computed(() => {
+  const query: Record<string, string> = {}
+
+  if (search.term) {
+    query[search.type] = search.term
+  }
+
+  const page = search.page >= 1 ? search.page : 1
+  const offset = (page - 1) * search.limit
+
+  query.limit = search.limit.toString()
+  query.offset = offset.toString()
+
+  return query
+})
+
+const getData = async () => {
+  const { pcfs } = await api.get<{ pcfs: PCF[], lastEvaluatedKey?: string }>('/pcf', {
+    query: { dataOwnerId: auth.user?.userId, ...query.value }
+  })
+
+  return pcfs
+}
+
 const api = inject<MandeInstance>('api')!
 const auth = useAuthenticator() as Authenticator
 
 const pcfs = ref<PCF[]>([])
 
-onMounted(async () => {
-  const response = await api.get<{ pcfs: PCF[] }>('/pcf', {
-    query: { dataOwnerId: auth.user?.userId }
-  })
+onMounted(async () => pcfs.value = await getData())
 
-  pcfs.value = response.pcfs
+watch(search, async () => {
+  pcfs.value = await getData()
 })
-
 </script>
