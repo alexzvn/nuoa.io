@@ -86,6 +86,7 @@ const update = async () => {
 
   await api.put('/pcf/' + id, payload).then(() => {
     alert('PCF updated successfully')
+    navigateTo('/me/published/' + id)
   }).catch((error: MandeError) => {
     alert(error.body.message ?? 'Failed to update PCF')
   })

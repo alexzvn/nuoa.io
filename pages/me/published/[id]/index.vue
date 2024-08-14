@@ -84,6 +84,9 @@ const markAsDeprecated = async () => {
     pcfId: id,
     version: pcf.value!.version || '1',
     pcfStatus: 'deprecated'
+  }).then(() => {
+    alert('PCF marked as deprecated')
+    pcf.value = { ...pcf.value!, pcfStatus: 'deprecated' } 
   })
 }
 
